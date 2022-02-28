@@ -103,6 +103,7 @@ declare namespace Eris {
   type InteractionDataOptionsRole = InteractionDataOptionWithValue<Constants["ApplicationCommandOptionTypes"]["ROLE"], string>;
   type InteractionDataOptionsMentionable = InteractionDataOptionWithValue<Constants["ApplicationCommandOptionTypes"]["MENTIONABLE"], string>;
   type InteractionDataOptionsNumber = InteractionDataOptionWithValue<Constants["ApplicationCommandOptionTypes"]["NUMBER"], number>;
+  type InteractionDataOptionsAttachment = InteractionDataOptionWithValue<Constants["ApplicationCommandOptionTypes"]["ATTACHMENT"], number>;
 
   interface InteractionOptions {
     type: Constants["InteractionResponseTypes"][keyof Constants["InteractionResponseTypes"]];
@@ -115,7 +116,7 @@ declare namespace Eris {
 
   // Application Commands
   type ApplicationCommandOptions = ApplicationCommandOptionsSubCommand | ApplicationCommandOptionsSubCommandGroup | ApplicationCommandOptionsWithValue;
-  type ApplicationCommandOptionsWithValue = ApplicationCommandOptionsString | ApplicationCommandOptionsInteger | ApplicationCommandOptionsBoolean | ApplicationCommandOptionsUser | ApplicationCommandOptionsChannel | ApplicationCommandOptionsRole | ApplicationCommandOptionsMentionable | ApplicationCommandOptionsNumber;
+  type ApplicationCommandOptionsWithValue = ApplicationCommandOptionsString | ApplicationCommandOptionsInteger | ApplicationCommandOptionsBoolean | ApplicationCommandOptionsUser | ApplicationCommandOptionsChannel | ApplicationCommandOptionsRole | ApplicationCommandOptionsMentionable | ApplicationCommandOptionsNumber | ApplicationCommandOptionsAttachment;
   interface ApplicationCommandOptionsSubCommand {
     type: Constants["ApplicationCommandOptionTypes"]["SUB_COMMAND"];
     name: string;
@@ -209,6 +210,8 @@ declare namespace Eris {
     autocomplete?: false;
     choices?: null;
   };
+  // ATTACHMENT
+  type ApplicationCommandOptionsAttachment = ApplicationCommandOption<Constants["ApplicationCommandOptionTypes"]["ATTACHMENT"]>;
 
   interface ApplicationCommand<T extends (Constants["ApplicationCommandTypes"])[keyof Constants["ApplicationCommandTypes"]]
   = (Constants["ApplicationCommandTypes"])[keyof Constants["ApplicationCommandTypes"]]> {
@@ -1465,6 +1468,7 @@ declare namespace Eris {
       ROLE:              8;
       MENTIONABLE:       9;
       NUMBER:            10;
+      ATTACHMENT:        11;
     };
     ApplicationCommandPermissionTypes: {
       ROLE: 1;
